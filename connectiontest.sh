@@ -1,6 +1,5 @@
 #!/usr/bin/bash
 
-
 if DBNAME=postgres PGPORT=5432 PGUSER=myprojectuser PGPASS=password
 then
         echo "[OK]"
