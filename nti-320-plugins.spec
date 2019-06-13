@@ -37,11 +37,13 @@ install -m 0744 nti320.cfg %{buildroot}/etc/nrpe.d/
 
 %files					
 %defattr(-,root,root)	
-/usr/lib64/nagios/plugins/nfs-service-check
-/usr/lib64/nagios/plugins/cody_gagnon_check_file_exists.sh
-/usr/lib64/nagios/plugins/cody_gagnon_check_active_nfs_connections.sh
-/usr/lib64/nagios/plugins/check_nfs_dirs.sh
-/usr/lib64/nagios/plugins/apachetestfromjoe
+/usr/lib64/nagios/plugins/apachectl_config_example.sh
+/usr/lib64/nagios/plugins/connectiontest.sh
+/usr/lib64/nagios/plugins/monitor_postgres.sh
+/usr/lib64/nagios/plugins/nfs-mount-test
+/usr/lib64/nagios/plugins/nrpe_plugin_python_version.sh
+/usr/lib64/nagios/plugins/nti-sanity.sh
+/usr/lib64/nagios/plugins/syslogtest.sh
 
 
 %config
@@ -51,19 +53,10 @@ install -m 0744 nti320.cfg %{buildroot}/etc/nrpe.d/
 
 %post
 
-nagiosip=""
-rsyslogip=""
-
 touch /thisworked
-systemctl enable snmpd
-systemctl start snmpd
-sed -i 's,/dev/hda1,/dev/sda1,'  /etc/nagios/nrpe.cfg
-sed -i "s/allowed_hosts=127.0.0.1/allowed_hosts=127.0.0.1, $nagiosip/g" /etc/nagios/nrpe.cfg
-echo "*.info;mail.none;authpriv.none;cron.none   @$rsyslogip" >> /etc/rsyslog.conf
 
-systemctl enable nrpe
 systemctl restart nrpe
-systemctl restart rsyslog
+
 
 %postun
 rm /etc/nrpe.d/nti320.cfg
