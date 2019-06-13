@@ -1,0 +1,1 @@
+rpmbuild -v -bb --clean SPECS/nti-320-plugins.spec
