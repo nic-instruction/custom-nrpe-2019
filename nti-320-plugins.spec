@@ -43,7 +43,7 @@ install -m 0744 nti320.cfg %{buildroot}/etc/nrpe.d/
 /usr/lib64/nagios/plugins/nfs-mount-test
 /usr/lib64/nagios/plugins/nrpe_plugin_python_version.sh
 /usr/lib64/nagios/plugins/nti-sanity.sh
-/usr/lib64/nagios/plugins/syslogtest.sh
+/usr/lib64/nagios/plugins/rsyslogtest.sh
 
 
 %config
